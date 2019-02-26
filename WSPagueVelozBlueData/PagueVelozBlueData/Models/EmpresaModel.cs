@@ -38,7 +38,7 @@ namespace PagueVelozBlueData.Models
             string retorno = string.Empty;
 
             if (!ValidadorCNPJCPF.ValidaCNPJ(CNPJ))
-                retorno += "CNPJ inválido!; ";
+                retorno += "CNPJ inválido!";
 
             return retorno;
         }

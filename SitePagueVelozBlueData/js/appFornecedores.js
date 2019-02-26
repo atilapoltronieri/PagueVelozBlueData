@@ -40,6 +40,8 @@ app.controller('fornecedorCtrl', ['$scope', '$http', '$window', '$location', 'to
 			 {				 
 				source.listaFornecedores[i].Data = new Date(parseInt(source.listaFornecedores[i].Data.slice(6, source.listaFornecedores[i].Data.length -2))).toLocaleDateString();
 				source.listaFornecedores[i].EmpresaNome = source.listaEmpresas.find(x => x.Id === source.listaFornecedores[0].IdEmpresa).NomeFantasia;
+				if (source.listaFornecedores[i].DataNascimento)
+					source.listaFornecedores[i].DataNascimento = new Date(parseInt(source.listaFornecedores[i].DataNascimento.slice(6, source.listaFornecedores[i].DataNascimento.length -2))).toLocaleDateString();				
 			 }
 			 
 			 source.aplicarFiltro();
@@ -135,9 +137,11 @@ app.controller('fornecedorCtrl', ['$scope', '$http', '$window', '$location', 'to
 		
 		if (source.objetoTela.EmpresaSelected != undefined &&
 			source.objetoTela.Nome != undefined &&
-			(source.objetoTela.CPF != undefined || source.objetoTela.CNPJ  != undefined))
+			(source.objetoTela.CPF != undefined || source.objetoTela.CNPJ != undefined))
 			if ((source.objetoTela.EmpresaSelected && source.objetoTela.EmpresaSelected.UF==='PR' &&
-			source.objetoTela.DataAniversario != undefined) ||(!source.objetoTela.EmpresaSelected || source.objetoTela.EmpresaSelected.UF!='PR'))
+			source.objetoTela.DataNascimento != undefined) ||
+			(!source.objetoTela.EmpresaSelected || source.objetoTela.EmpresaSelected.UF!='PR'))
+			if ((source.objetoTela.CPF != undefined && source.objetoTela.RG != undefined) || (source.objetoTela.CNPJ))
 				return false;
 		
 		return true;
@@ -147,18 +151,10 @@ app.controller('fornecedorCtrl', ['$scope', '$http', '$window', '$location', 'to
 		
 		var source = this;
 		
-		if (source.objetoTela.DataAniversario != undefined )
+		if (source.objetoTela.DataNascimento != undefined && source.objetoTela.DataNascimento.length < 10)
 		{
-			source.DataAniversario = new Date(source.objetoTela.DataAniversario.slice(0, 2) + '/' + source.objetoTela.DataAniversario.slice(2, 4) + '/' + source.objetoTela.DataAniversario.slice(4, 8));
-			var hoje = new Date();
-			hoje = hoje.setFullYear(hoje.getFullYear() - 18)
-			if (hoje >= source.DataAniversario)
-			{		
-				return true;
-			}
-			
+			source.objetoTela.DataNascimento = new Date(source.objetoTela.DataNascimento.slice(2, 4) + '/' + source.objetoTela.DataNascimento.slice(0, 2) + '/' + source.objetoTela.DataNascimento.slice(4, 8));
 		}
-		Materialize.toast("E necessário possuir 18 anos.", 4000, 'red');
 		return false;
 	}
 	
@@ -263,7 +259,7 @@ app.controller('fornecedorCtrl', ['$scope', '$http', '$window', '$location', 'to
 	$scope.salvarFornecedor = function () {
 		
 		var source = this;	
-		
+		source.validaAniversario();
 		var fornecedor = {};
 		
 		fornecedor.Id = source.objetoTela.Id;
@@ -274,7 +270,12 @@ app.controller('fornecedorCtrl', ['$scope', '$http', '$window', '$location', 'to
 		else
 			fornecedor.CPFCNPJ = source.objetoTela.CNPJ;
 		fornecedor.Telefone = source.objetoTela.Telefone;
-		fornecedor.Data = source.DataAniversario;
+		if (!fornecedor.Data)
+			fornecedor.Data = new Date().toLocaleDateString("en-US");
+		else
+			fornecedor.Data = new Date(fornecedor.Data).toLocaleDateString("en-US");
+		fornecedor.DataNascimento = source.objetoTela.DataNascimento.toLocaleDateString();
+		fornecedor.RG = source.objetoTela.RG;
 		var fornecedorJson = JSON.stringify(fornecedor);
 		
 		//spinnerService.show();
@@ -289,6 +290,9 @@ app.controller('fornecedorCtrl', ['$scope', '$http', '$window', '$location', 'to
 			var retorno = JSON.parse(response);
 							 
 			retorno.Data = new Date(parseInt(retorno.Data.slice(6, retorno.Data.length -2))).toLocaleDateString();
+			if (retorno.DataNascimento)
+				retorno.DataNascimento = new Date(parseInt(retorno.DataNascimento.slice(6, retorno.DataNascimento.length -2))).toLocaleDateString();				
+			 
 			retorno.EmpresaNome = source.listaEmpresas.find(x => x.Id === retorno.IdEmpresa).NomeFantasia;
 			source.listaFornecedores.push(retorno);
 			source.listaFornecedores = Enumerable.from(source.listaFornecedores).orderBy(function (x) { return x.Id }).toArray();
@@ -353,6 +357,8 @@ app.controller('fornecedorCtrl', ['$scope', '$http', '$window', '$location', 'to
 			source.objetoTela.CPF = fornecedor.CPFCNPJ;
 		source.objetoTela.Telefone = fornecedor.Telefone;
 		source.objetoTela.Data = fornecedor.Data;
+		source.objetoTela.DataNascimento = fornecedor.DataNascimento;
+		source.objetoTela.RG = fornecedor.RG;
 	}
 	
 	$scope.carregarEmpresa = function() {

@@ -23,6 +23,8 @@ namespace PagueVelozBlueData.DAO
 
             if (pFornecedor.Data <= DateTime.MinValue)
                 pFornecedor.Data = DateTime.Now;
+            if (pFornecedor.DataNascimento <= DateTime.MinValue)
+                pFornecedor.DataNascimento = new DateTime(1753, 1, 1);
 
             if (!string.IsNullOrEmpty(erroValidacao))
                 throw new Exception(erroValidacao);
@@ -59,7 +61,7 @@ namespace PagueVelozBlueData.DAO
 
                 foreach (var Fornecedor in query)
                 {
-                    listaRetorno.Add(new FornecedorModel(Fornecedor.Id, Fornecedor.IdEmpresa, Fornecedor.Nome, Fornecedor.CPFCNPJ, Fornecedor.Data, Fornecedor.Telefone));
+                    listaRetorno.Add(new FornecedorModel(Fornecedor.Id, Fornecedor.IdEmpresa, Fornecedor.Nome, Fornecedor.CPFCNPJ, Fornecedor.Data, Fornecedor.Telefone, Fornecedor.DataNascimento, Fornecedor.RG));
                 }
             }
 
@@ -80,7 +82,7 @@ namespace PagueVelozBlueData.DAO
 
                 foreach (var Fornecedor in query)
                 {
-                    listaRetorno.Add(new FornecedorModel(Fornecedor.Id, Fornecedor.IdEmpresa, Fornecedor.Nome, Fornecedor.CPFCNPJ, Fornecedor.Data, Fornecedor.Telefone));
+                    listaRetorno.Add(new FornecedorModel(Fornecedor.Id, Fornecedor.IdEmpresa, Fornecedor.Nome, Fornecedor.CPFCNPJ, Fornecedor.Data, Fornecedor.Telefone, Fornecedor.DataNascimento, Fornecedor.RG));
                 }
             }
 

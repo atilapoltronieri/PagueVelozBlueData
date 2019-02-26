@@ -160,18 +160,29 @@
 				<div class="row">				
 					<form class="col s12">
 						<div class="row">							
-							<div class="input-field col s4">
+							<div class="input-field col s6">
 							  <input id="last_name" ng-model="objetoTela.Data" ui-mask="99/99/9999" placeholder="__/__/____" type="text" class="validate" disabled>
 							  <label for="last_name">Data Cadastro</label>
 							</div>				
-							<div class="input-field col s4">
+							<div class="input-field col s6">
 							  <input id="last_name" ng-model="objetoTela.Telefone" ui-mask="(99) 99999.9999" placeholder="(__) _____.____"   type="text" class="validate">
 							  <label for="last_name">Telefone</label>			
-							</div>					
-							<div class="input-field col s4"  ng-if="objetoTela.EmpresaSelected.UF==='PR' && objetoTela.CPF" >
-							  <input id="last_name" ng-model="objetoTela.DataAniversario" type="text" ui-mask="99/99/9999" placeholder="__/__/____" class="validate" required>
+							</div>	
+						</div>
+					</form>
+				</div>
+				
+				<div class="row">				
+					<form class="col s12">
+						<div class="row"  ng-if="objetoTela.CPF">					
+							<div class="input-field col s6">
+							  <input id="last_name" ng-model="objetoTela.DataNascimento" type="text" ui-mask="99/99/9999" placeholder="__/__/____" class="validate" required>
 							  <label for="last_name">Data Aniversário</label>
 							</div>	
+							<div class="input-field col s6">
+							  <input id="last_name" ng-model="objetoTela.RG" ui-mask="99.999.999-9" placeholder="__.___.___-_" type="text" required>
+							  <label for="last_name">RG</label>
+							</div>
 						</div>
 					</form>
 				</div>

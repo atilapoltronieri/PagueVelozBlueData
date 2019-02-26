@@ -52,6 +52,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -211,8 +212,12 @@
     <Compile Include="Controllers\FornecedorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="C__MigrationHistory.cs" />
     <Compile Include="DAO\EmpresaDAO.cs" />
     <Compile Include="DAO\FornecedorDAO.cs" />
+    <Compile Include="Empresa.cs" />
+    <Compile Include="EmpresaModels.cs" />
+    <Compile Include="FornecedorModels.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -221,6 +226,7 @@
     <Compile Include="Models\EmpresaModel.cs" />
     <Compile Include="Models\FornecedorModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="PagueVelozBlueDataEDM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />

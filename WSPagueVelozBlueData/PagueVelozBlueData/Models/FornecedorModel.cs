@@ -24,6 +24,10 @@ namespace PagueVelozBlueData.Models
         public DateTime Data { get; set; }
         [DataMember]
         public string Telefone { get; set; }
+        [DataMember]
+        public DateTime DataNascimento { get; set; }
+        [DataMember]
+        public string RG { get; set; }
 
         public FornecedorModel()
         {
@@ -35,7 +39,7 @@ namespace PagueVelozBlueData.Models
             Id = pId;
         }
 
-        public FornecedorModel(int pId, int pIdEmpresa, string pNome, string pCPFCNPJ, DateTime pData, string pTelefone)
+        public FornecedorModel(int pId, int pIdEmpresa, string pNome, string pCPFCNPJ, DateTime pData, string pTelefone, DateTime pDataNascimento, string pRG)
         {
             Id = pId;
             IdEmpresa = pIdEmpresa;
@@ -43,6 +47,8 @@ namespace PagueVelozBlueData.Models
             CPFCNPJ = pCPFCNPJ;
             Data = pData;
             Telefone = pTelefone;
+            DataNascimento = pDataNascimento;
+            RG = pRG;
         }
 
         public string ValidaFornecedorModel()
@@ -53,6 +59,8 @@ namespace PagueVelozBlueData.Models
                 retorno += "CPF/CNPJ inválido!";
             if (IdEmpresa <= 0)
                 retorno += "É necessário selecionar uma Empresa!";
+            if (CPFCNPJ.Length <= 11 && DataNascimento > DateTime.Now.AddYears(-18))
+                retorno += "É necessário possuir mais de 18 anos para ser um Fornecedor!";
 
             return retorno;
         }
