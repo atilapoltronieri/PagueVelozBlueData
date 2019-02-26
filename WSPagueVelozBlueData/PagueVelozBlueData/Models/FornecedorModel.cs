@@ -50,7 +50,9 @@ namespace PagueVelozBlueData.Models
             string retorno = string.Empty;
 
             if (!ValidadorCNPJCPF.ValidaCNPJ(CPFCNPJ) && !ValidadorCNPJCPF.ValidaCPF(CPFCNPJ))
-                retorno += "CPF/CNPJ inválido!; ";
+                retorno += "CPF/CNPJ inválido!";
+            if (IdEmpresa <= 0)
+                retorno += "É necessário selecionar uma Empresa!";
 
             return retorno;
         }
