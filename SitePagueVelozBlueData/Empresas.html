@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Empresas</title>
+		
+		<!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+		<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" href="css/styleHome.css">
+		<link href="lib/toaster.css" rel="stylesheet">
+		
+		<script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+						
+		<!-- ionic/angularjs js -->
+		<script src="lib/angular/angular.min.js"></script>
+		<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+		<script src="lib/angular-animate/angular-animate.js"></script>
+		<script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
+		<script src="lib/angular-spinner/angular-spinner.js"></script>
+		<script src="lib/toaster.min.js"></script>
+		<script src="lib/angular-ui-mask/dist/mask.js"></script>
+		<script src="lib/bs-table.js"></script>
+
+		<!-- your app's js -->
+		<script src="js/appEmpresas.js"></script>
+		<script src="js/linq.js"></script>
+
+	</head>
+
+	<body ng-app="myApp" ng-controller="empresaCtrl as empresa">
+		<toaster-container toaster-options="{'time-out': 2000, 'close-button':true, 'animation-class': 'toast-bottom-right'}"></toaster-container>
+	
+		<div class="content-header">
+			<nav>
+				<div class="nav-wrapper">
+					<!-- <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a> -->
+					<a href="#" class="brand-logo">Empresas</a>
+				  
+					<ul id="nav-mobile" class="right hide-on-med-and-down">
+						<li class="border-right"><h4 class="white-text">Bem Vindo</h4></li>
+						<li class="border-right"><a class="default-color modal-trigger pointer" href="Fornecedores.html"><h4 class="white-text">Fornecedores</h4></a></li>
+						<!-- <li><a class="pointer"><i title="Deslogar" ng-click="logout()" class="material-icons">power_settings_new</i></a></li> -->
+					</ul>
+				</div>
+			</nav>			
+		</div>
+		
+		<div class="container p-t-20">
+			<!-- Page Content goes here -->
+			
+			<div class="row">
+				<div class="col s12 m12">
+				  <div class="card white darken-1">
+					<div class="card-content black-text slim">
+						<span class="card-title">
+							Filtros
+						</span>
+						<div class="row">
+							<div class="col s3">
+							  <label for="filtroPagador">ID</label>
+							  <input id="filtroPagador" ng-model="filtro.Id" placeholder="ID" minlength="1" maxlength="128" type="text" class="validate">
+							</div>
+							<div class="col s3">
+							  <label for="filtroBeneficiario">Nome Fantasia</label>
+							  <input id="filtroBeneficiario" ng-model="filtro.NomeFantasia" placeholder="Nome" minlength="1" maxlength="128" type="text" class="validate">
+						    </div>
+							<div class="col s3">
+							  <label for="filtroBeneficiario">CNPJ</label>
+							  <input id="filtroBeneficiario" ng-model="filtro.CNPJ" ui-mask="99.999.999/9999-99" placeholder="__.___.___/____-__"  type="text" class="validate">
+						    </div>
+							<div class="col s3">
+								<a class="waves-effect waves-light default-color btn right" ng-click="aplicarFiltro()">Aplicar Filtro</a>
+							</div>
+						</div>
+					</div>
+				  </div>
+				  <div class="card white darken-1">
+					<div class="card-content black-text">
+						<span class="card-title">
+							Lista de Empresas
+							<a class="waves-effect waves-light default-color btn modal-trigger right" href="#modal1" ng-click="novoEmpresa()">Novo Empresa</a>
+						</span>
+						<table class="bordered highlight">
+							<thead>
+							  <tr>
+								  <th> </th>
+								  <th>Id</th>
+								  <th>Nome Fantasia</th>
+								  <th>CNPJ</th>
+								  <th>UF</th>
+							  </tr>
+							</thead>
+							
+							<tr ng-repeat="empresa in listaEmpresasShow track by empresa.Id" ng-click="editarEmpresa(empresa)">
+								<td><a class="pointer"><i  href="#modalDeletar" title="Deletar" ng-click="deletarEmpresa(empresa.Id)" class="material-icons modal-trigger">delete</a></li></td>
+								<td class="modal-trigger pointer" href="#modal1" >{{empresa.Id}}</td>
+								<td class="modal-trigger pointer" href="#modal1" >{{empresa.NomeFantasia}}</td>
+								<td class="modal-trigger pointer" href="#modal1" >{{empresa.CNPJ}}</td>
+								<td class="modal-trigger pointer" href="#modal1" >{{empresa.UF}}</td>
+							</tr>
+						</table>
+						
+							
+						<div class="modal-footer text-right">
+							<a class="bold black-text">Registros {{paginacao.registroInicial}} à {{paginacao.registroFinal}} de {{paginacao.registrosTotais}}</a>
+							<a ng-click="anteriorPagina()" ng-class="{'disabled': validaAnteriorPagina()}" title="Página Anterior" class="waves-effect waves-grey btn-flat pointer green white-text"><<</a>
+							<a ng-click="proximaPagina()" ng-class="{'disabled': validaProximaPagina()}" title="Próxima Página" class="waves-effect waves-grey btn-flat pointer green white-text">>></a>							
+						</div>
+					</div>
+				  </div>
+				</div>
+			</div>		
+		</div>
+		
+		<div id="modal1" class="modal">
+			<div class="modal-content">
+				<h4>Empresa {{objetoTela.IdEmpresa}}</h4>
+				
+				<div class="row">
+					<form class="col s12">
+						<div class="row">
+							<div class="input-field col s12">
+							  <input id="first_name" ng-model="objetoTela.NomeFantasia" placeholder="Nome" minlength="1" maxlength="128" type="text" class="validate" required>
+							  <label for="first_name">Nome Fantasia</label>
+							</div>							
+						</div>
+					</form>
+				</div>
+				
+				<div class="row">				
+					<form class="col s12">
+						<div class="row">							
+							<div class="input-field col s6">
+							  <input id="last_name" ng-model="objetoTela.CNPJ" ui-mask="99.999.999/9999-99" placeholder="__.___.___/____-__" ng-blur=(validaTipo()) type="text" class="validate" required>
+							  <label for="last_name">CNPJ</label>
+							</div>
+							<div class="input-field col s6">
+								<select id="listUF" class="validate comboSelect"
+								ng-options="item as item.label for item in listaUF track by item.id" ng-model="objetoTela.UFSelected"></select>
+								<label for="first_name">UF</label>
+							</div>
+						</div>
+					</form>
+				</div>
+				
+			</div>
+			
+			<div class="modal-footer">
+				<a ng-click="salvarEmpresa()" ng-class="{'disabled': validaSalvar()}" class="modal-action modal-close waves-effect waves-grey btn-flat pointer green white-text">Salvar</a>
+				<a class="modal-action modal-close waves-effect waves-grey btn-flat pointer red white-text">Fechar</a>
+			</div>
+		</div>
+			
+		<div id="modalDeletar" class="modal modalDeletar">
+			<div class="modal-content">
+				<span class="card-title"><h4>Confirma Deleção</h4></span>
+				<div class="modal-footer text-right">
+					<a ng-click="confirmarDeletarEmpresa()" class="modal-action modal-close waves-effect waves-grey btn-flat pointer green white-text">Deletar</a>
+					<a class="modal-action modal-close waves-effect waves-grey btn-flat pointer red white-text">Cancelar</a>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+	
+	<script type="text/javascript">
+	
+		// Initialize collapse button
+		//$(".button-collapse").sideNav();
+		// Initialize collapsible (uncomment the line below if you use the dropdown variation)
+		//$('.collapsible').collapsible();
+		$(document).ready(function(){
+			// the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+			$('.modal').modal();
+			$('.modalDeletar').modal();
+			$('.modalSobre').modal();
+			$('.modalSalarioMinimo').modal();
+			$('select').material_select();
+		});
+	  
+	</script>
+
+</html>
