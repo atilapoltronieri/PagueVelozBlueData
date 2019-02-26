@@ -51,7 +51,7 @@ namespace PagueVelozBlueData.Models
             RG = pRG;
         }
 
-        public string ValidaFornecedorModel()
+        public string ValidaFornecedorModel(string pUF)
         {
             string retorno = string.Empty;
 
@@ -59,8 +59,8 @@ namespace PagueVelozBlueData.Models
                 retorno += "CPF/CNPJ inválido!";
             if (IdEmpresa <= 0)
                 retorno += "É necessário selecionar uma Empresa!";
-            if (CPFCNPJ.Length <= 11 && DataNascimento > DateTime.Now.AddYears(-18))
-                retorno += "É necessário possuir mais de 18 anos para ser um Fornecedor!";
+            if (CPFCNPJ.Length <= 11 && DataNascimento > DateTime.Now.AddYears(-18) && pUF == "PR")
+                retorno += "Empresa do Paraná. É necessário possuir mais de 18 anos!";
 
             return retorno;
         }

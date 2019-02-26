@@ -153,7 +153,7 @@ app.controller('fornecedorCtrl', ['$scope', '$http', '$window', '$location', 'to
 		
 		if (source.objetoTela.DataNascimento != undefined && source.objetoTela.DataNascimento.length < 10)
 		{
-			source.objetoTela.DataNascimento = new Date(source.objetoTela.DataNascimento.slice(2, 4) + '/' + source.objetoTela.DataNascimento.slice(0, 2) + '/' + source.objetoTela.DataNascimento.slice(4, 8));
+			source.objetoTela.DataNascimento = new Date(source.objetoTela.DataNascimento.slice(2, 4) + '/' + source.objetoTela.DataNascimento.slice(0, 2) + '/' + source.objetoTela.DataNascimento.slice(4, 8)).toLocaleDateString();
 		}
 		return false;
 	}
@@ -274,7 +274,7 @@ app.controller('fornecedorCtrl', ['$scope', '$http', '$window', '$location', 'to
 			fornecedor.Data = new Date().toLocaleDateString("en-US");
 		else
 			fornecedor.Data = new Date(fornecedor.Data).toLocaleDateString("en-US");
-		fornecedor.DataNascimento = source.objetoTela.DataNascimento.toLocaleDateString();
+		fornecedor.DataNascimento = source.objetoTela.DataNascimento;
 		fornecedor.RG = source.objetoTela.RG;
 		var fornecedorJson = JSON.stringify(fornecedor);
 		

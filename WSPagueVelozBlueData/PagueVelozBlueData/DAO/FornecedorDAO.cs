@@ -19,7 +19,10 @@ namespace PagueVelozBlueData.DAO
 
         public FornecedorModel SalvarFornecedor(FornecedorModel pFornecedor)
         {
-            var erroValidacao = pFornecedor.ValidaFornecedorModel();
+            EmpresaDAO empresaDao = new EmpresaDAO();
+            EmpresaModel empresaFornecedor = new EmpresaModel(pFornecedor.IdEmpresa);
+            empresaFornecedor = empresaDao.BuscarEmpresa(new EmpresaModel(pFornecedor.IdEmpresa)).First();
+            var erroValidacao = pFornecedor.ValidaFornecedorModel(empresaFornecedor.UF);
 
             if (pFornecedor.Data <= DateTime.MinValue)
                 pFornecedor.Data = DateTime.Now;

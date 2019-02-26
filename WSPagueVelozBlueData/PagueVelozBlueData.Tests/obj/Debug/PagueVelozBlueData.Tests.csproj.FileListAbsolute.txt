@@ -76,7 +76,6 @@ C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVel
 C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\PagueVelozBlueData.Tests.dll.config
 C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\PagueVelozBlueData.Tests.dll
 C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\PagueVelozBlueData.Tests.pdb
-C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
 C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\Newtonsoft.Json.dll
 C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\PagueVelozBlueData.dll
@@ -124,3 +123,16 @@ C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVel
 C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\obj\Debug\PagueVelozBlueData.Tests.csprojResolveAssemblyReference.cache
 C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\obj\Debug\PagueVelozBlueData.Tests.dll
 C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\obj\Debug\PagueVelozBlueData.Tests.pdb
+C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\xunit.abstractions.dll
+C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\xunit.runner.visualstudio.testadapter.dll
+C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\xunit.runner.reporters.net452.dll
+C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\xunit.runner.utility.net452.dll
+C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\xunit.assert.dll
+C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\xunit.core.dll
+C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\xunit.execution.desktop.dll
+C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\WebGrease.dll
+C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\Antlr3.Runtime.dll
+C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\xunit.assert.xml
+C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\xunit.core.xml
+C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\xunit.execution.desktop.xml
+C:\Users\abpol\Documents\GitHub\PagueVelozBlueData\WSPagueVelozBlueData\PagueVelozBlueData.Tests\bin\Debug\Antlr3.Runtime.pdb
