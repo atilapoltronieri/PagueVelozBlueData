@@ -62,17 +62,21 @@
 							Filtros
 						</span>
 						<div class="row">
-							<div class="col s3">
+							<div class="col s2">
 							  <label for="filtroPagador">ID</label>
 							  <input id="filtroPagador" ng-model="filtro.Id" placeholder="ID" minlength="1" maxlength="128" type="text" class="validate">
 							</div>
-							<div class="col s3">
+							<div class="col s2">
 							  <label for="filtroBeneficiario">Nome</label>
 							  <input id="filtroBeneficiario" ng-model="filtro.Nome" placeholder="Nome" minlength="1" maxlength="128" type="text" class="validate">
 						    </div>
 							<div class="col s3">
 							  <label for="filtroBeneficiario">CPF/CNPJ</label>
 							  <input id="filtroBeneficiario" ng-model="filtro.CPFCNPJ"type="text" class="validate">
+						    </div>
+							<div class="col s2">
+							  <label for="filtroBeneficiario">Data Cadastro</label>
+							  <input id="filtroBeneficiario" ng-model="filtro.Data" ui-mask="99/99/9999" placeholder="__/__/____"  placeholder="Nome" minlength="1" maxlength="128" type="text" class="validate">
 						    </div>
 							<div class="col s3">
 								<a class="waves-effect waves-light default-color btn right" ng-click="aplicarFiltro()">Aplicar Filtro</a>

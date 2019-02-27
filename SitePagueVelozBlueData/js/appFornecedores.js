@@ -57,13 +57,17 @@ app.controller('fornecedorCtrl', ['$scope', '$http', '$window', '$location', 'to
 		var source = this;		
 		source.paginacao.paginaAtual = 1;
 		source.listaFornecedoresFiltro = source.listaFornecedores;
-		
 		if (source.filtro.Id != undefined && source.filtro.Id != "")
 			source.listaFornecedoresFiltro = Enumerable.from(source.listaFornecedoresFiltro).where(function (x) {return x.Id == source.filtro.Id}).toArray();
 		if (source.filtro.Nome != undefined && source.filtro.Nome != "")
 			source.listaFornecedoresFiltro = Enumerable.from(source.listaFornecedoresFiltro).where(function (x) {return x.Nome.indexOf(source.filtro.Nome) >= 0}).toArray();
 		if (source.filtro.CPFCNPJ != undefined && source.filtro.CPFCNPJ != "")
 			source.listaFornecedoresFiltro = Enumerable.from(source.listaFornecedoresFiltro).where(function (x) {return x.CPFCNPJ.indexOf(source.filtro.CPFCNPJ) >= 0}).toArray();
+		if (source.filtro.Data != undefined && source.filtro.Data != "")
+		{
+			source.filtro.Data = source.filtro.Data.slice(0, 2) + '/' + source.filtro.Data.slice(2, 4) + '/' + source.filtro.Data.slice(4, 8);
+			source.listaFornecedoresFiltro = Enumerable.from(source.listaFornecedoresFiltro).where(function (x) {return x.Data.indexOf(source.filtro.Data) >= 0}).toArray();
+		}
 		
 		source.aplicarFiltroPaginacao();
 	}
