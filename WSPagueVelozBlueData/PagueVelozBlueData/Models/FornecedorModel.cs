@@ -1,4 +1,5 @@
-﻿using PagueVelozBlueData.Util;
+﻿using PagueVelozBlueData.DAO;
+using PagueVelozBlueData.Util;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -55,10 +56,10 @@ namespace PagueVelozBlueData.Models
         {
             string retorno = string.Empty;
 
-            if (!ValidadorCNPJCPF.ValidaCNPJ(CPFCNPJ) && !ValidadorCNPJCPF.ValidaCPF(CPFCNPJ))
-                retorno += "CPF/CNPJ inválido!";
             if (IdEmpresa <= 0)
                 retorno += "É necessário selecionar uma Empresa!";
+            if (!ValidadorCNPJCPF.ValidaCNPJ(CPFCNPJ) && !ValidadorCNPJCPF.ValidaCPF(CPFCNPJ))
+                retorno += "CPF/CNPJ inválido!";
             if (CPFCNPJ.Length <= 11 && DataNascimento > DateTime.Now.AddYears(-18) && pUF == "PR")
                 retorno += "Empresa do Paraná. É necessário possuir mais de 18 anos!";
 
